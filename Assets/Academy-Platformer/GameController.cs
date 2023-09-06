@@ -3,6 +3,7 @@ using Sounds;
 using UI.HUD;
 using UI.UIService;
 using UI.UIWindows;
+using UnityEngine;
 
 public class GameController
 {
@@ -21,6 +22,8 @@ public class GameController
     
     public GameController(UnityEngine.Camera camera)
     {
+        Debug.Log("Spawn GameController");
+        
         _soundController = new SoundController();
         _camera = camera;
         
