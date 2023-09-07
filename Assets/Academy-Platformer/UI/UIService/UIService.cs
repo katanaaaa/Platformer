@@ -15,7 +15,7 @@ namespace UI.UIService
 
         private const string UISource = "";
         
-        public UIService(UnityEngine.Camera camera)
+        public UIService(Camera camera)
         {
             _uIRoot = Resources.Load<UIRoot>("UIRoot");
             _uIRoot = Object.Instantiate(_uIRoot);

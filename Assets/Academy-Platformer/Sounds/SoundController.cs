@@ -5,9 +5,7 @@ namespace Sounds
         private SoundPool _soundPool;
 
         public SoundController()
-        {
-            _soundPool = new SoundPool();
-        }
+        { }
         
         public void Play(SoundName soundName, float volume = 1, bool loop = false)
         {

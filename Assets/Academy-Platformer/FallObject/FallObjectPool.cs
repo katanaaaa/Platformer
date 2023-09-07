@@ -31,7 +31,7 @@ public class FallObjectPool
         var controller = _factory.Create(type);
         var view = controller.View;
         
-        controller.SetActive(true);
+        // controller.SetActive(true);
         view.transform.parent = _container.transform;
         controller.ObjectFellNotify += (FallObjectController) => ReturnToPool(view);
         controller.DeathAnimationEndedNotify += (FallObjectController) => ReturnToPool(view);
@@ -48,7 +48,7 @@ public class FallObjectPool
         {
             if (!fallObjectController.View.gameObject.activeInHierarchy)
             {
-                fallObjectController.SetActive(true);
+                // fallObjectController.SetActive(true);
                 return fallObjectController.View;
             }
         }
@@ -60,7 +60,7 @@ public class FallObjectPool
     {
         if (_pool.TryGetValue(fallObject, out var controller))
         {
-            controller.SetActive(false);
+            // controller.SetActive(false);
         }
         else
         {

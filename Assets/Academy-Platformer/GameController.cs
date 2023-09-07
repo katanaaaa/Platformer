@@ -4,15 +4,16 @@ using UI.HUD;
 using UI.UIService;
 using UI.UIWindows;
 using UnityEngine;
+using Zenject;
 
-public class GameController
+public class GameController : ITickable
 {
-    private readonly UnityEngine.Camera _camera;
+    private readonly Camera _camera;
     
     private FallObjectSpawner _spawner;
     private InputController _inputController;
     private PlayerController _playerController;
-    private UIService _uiService;
+    private IUIService _uiService;
     private UIMainMenuController _mainMenuWindowController;
     private UIGameWindowController _gameWindowController;
     private UIEndGameWindowController _endMenuWindowController;
@@ -20,34 +21,23 @@ public class GameController
     private ScoreCounter _scoreCounter;
     private SoundController _soundController;
     
-    public GameController(UnityEngine.Camera camera)
+    public GameController(Camera camera)
     {
-        Debug.Log("Spawn GameController");
-        
-        _soundController = new SoundController();
         _camera = camera;
         
-        UIInit();
         ScoreInit();
         
         _inputController = new InputController();
-        _playerController = new PlayerController(_inputController, 
-            _hudWindowController, 
-            _camera, 
+        _playerController = new PlayerController(
+            _inputController,
+            _hudWindowController,
+            _camera,
             _soundController);
         _spawner = new FallObjectSpawner(_scoreCounter);
 
         _playerController.PlayerHpController.OnZeroHealth += StopGame;
-    }
-    
-    private void UIInit()
-    {
-        _uiService = new UIService(_camera);
-            
-        _mainMenuWindowController = new UIMainMenuController(_uiService, this);
-        _gameWindowController = new UIGameWindowController(_uiService);
-        _endMenuWindowController = new UIEndGameWindowController(_uiService, this);
-        _hudWindowController = new HUDWindowController(_uiService);
+        
+        InitGame();
     }
 
     private void ScoreInit()
@@ -70,16 +60,14 @@ public class GameController
         
         _playerController.Spawn();
         _spawner.StartSpawn();
-        TickableManager.TickableManager.UpdateNotify += Update;
     }
 
     public void StopGame()
     {
         _playerController.DestroyView(()=>_gameWindowController.ShowEndMenuWindow());
         _spawner.StopSpawn();
-        TickableManager.TickableManager.UpdateNotify -= Update;
     }
 
-    private void Update()
+    public void Tick()
     { }
 }

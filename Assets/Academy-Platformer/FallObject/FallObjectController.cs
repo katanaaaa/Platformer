@@ -1,10 +1,11 @@
 using System;
 using Player;
 using UnityEngine;
+using Zenject;
 
 namespace FallObject
 {
-    public class FallObjectController
+    public class FallObjectController : ITickable
     {
         public static event Action<float> DamageToPlayerNotify;
         public event Action<FallObjectController> PlayerCatchFallingObjectNotify;
@@ -74,22 +75,22 @@ namespace FallObject
             _view.transform.position += _deltaVector * _fallSpeed;
         }
 
-        public void SetActive(bool value)
-        {
-            if (value == true)
-            {
-                TickableManager.TickableManager.FixedUpdateNotify += FixedUpdate;
-                
-            }
-            else
-            {
-                TickableManager.TickableManager.FixedUpdateNotify -= FixedUpdate;
-            }
-
-            _view.transform.localScale = _defaultScale;
-            View.gameObject.SetActive(value);
-            _isCatched = !value;
-        }
+        // public void SetActive(bool value)
+        // {
+        //     if (value == true)
+        //     {
+        //         TickableManager.TickableManager.FixedUpdateNotify += FixedUpdate;
+        //         
+        //     }
+        //     else
+        //     {
+        //         TickableManager.TickableManager.FixedUpdateNotify -= FixedUpdate;
+        //     }
+        //
+        //     _view.transform.localScale = _defaultScale;
+        //     View.gameObject.SetActive(value);
+        //     _isCatched = !value;
+        // }
         
         public void SetModel(FallObjectModel model)
         {
@@ -97,6 +98,11 @@ namespace FallObject
             _fallSpeed = model.FallSpeed;
             _damage = model.Damage;
             _view.SpriteRenderer.sprite = model.ObjectSprite;
+        }
+
+        public void Tick()
+        {
+            FixedUpdate();
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using FallObject;
 using Sounds;
-using UnityEngine;
 
 public class ScoreCounter
 {

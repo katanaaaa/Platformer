@@ -14,7 +14,10 @@ namespace Player
         private readonly Vector3 _rightPointStop;
         private readonly float _step;
 
-        public PlayerMovementController(InputController inputController, PlayerView playerView, PlayerController playerController)
+        public PlayerMovementController(
+            InputController inputController,
+            PlayerView playerView,
+            PlayerController playerController)
         {
             _playerView = playerView;
 
@@ -22,8 +25,8 @@ namespace Player
             playerController.OnDisposed += Disposed;
 
             _step = Speed * Time.deltaTime;
-            _leftPointStop =  UnityEngine.Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));
-            _rightPointStop =  UnityEngine.Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
+            _leftPointStop =  Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));
+            _rightPointStop =  Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0));
         
             _inputController.OnLeftEvent += MoveLeft;
             _inputController.OnRightEvent += MoveRight;
