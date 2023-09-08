@@ -7,14 +7,8 @@ public class UIInstaller : Installer<UIInstaller>
 {
     public override void InstallBindings()
     {
-        // Container
-        //     .Bind<IUIService>()
-        //     .To<UIService>()
-        //     .AsSingle()
-        //     .NonLazy();
-
         Container
-            .BindInterfacesAndSelfTo<UIService>()
+            .BindInterfacesAndSelfTo<IUIService>()
             .AsSingle()
             .NonLazy();
 

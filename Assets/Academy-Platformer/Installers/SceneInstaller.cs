@@ -11,19 +11,19 @@ public class SceneInstaller : MonoInstaller
         UIInstaller.Install(Container);
     }
 
-    private void InstallMisc()
-    {
-        Container
-            .BindInterfacesAndSelfTo<GameController>()
-            .AsSingle()
-            .NonLazy();
-    }
 
     private void InstallCamera()
     {
         Container
             .Bind<Camera>()
             .FromComponentInNewPrefabResource(ResourcesConst.MainCamera)
+            .AsSingle()
+            .NonLazy();
+    }
+    private void InstallMisc()
+    {
+        Container
+            .Bind<GameController>()
             .AsSingle()
             .NonLazy();
     }

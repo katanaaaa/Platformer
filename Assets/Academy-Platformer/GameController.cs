@@ -6,7 +6,7 @@ using UI.UIWindows;
 using UnityEngine;
 using Zenject;
 
-public class GameController : ITickable
+public class GameController
 {
     private readonly Camera _camera;
     
@@ -24,6 +24,7 @@ public class GameController : ITickable
     public GameController(Camera camera)
     {
         _camera = camera;
+        _soundController = new SoundController();
         
         ScoreInit();
         
@@ -67,7 +68,4 @@ public class GameController : ITickable
         _playerController.DestroyView(()=>_gameWindowController.ShowEndMenuWindow());
         _spawner.StopSpawn();
     }
-
-    public void Tick()
-    { }
 }

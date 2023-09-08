@@ -47,7 +47,6 @@ namespace Player
             _inputController = inputController;
             _camera = camera;
             
-            
             _playerStorage = new PlayerStorage();
             _factoryPlayer = new FactoryPlayer();
         }

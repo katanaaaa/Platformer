@@ -11,7 +11,7 @@ namespace Academy_Platformer.Player.FactoryPlayer
         {
             _playerPrefab = Resources.Load<PlayerView>(ResourcesConst.PlayerPrefab);
         }
-        
+            
         public PlayerView Create(PlayerModel playerModel, PlayerView playerView)
         {
             playerView = GameObject.Instantiate(_playerPrefab);
