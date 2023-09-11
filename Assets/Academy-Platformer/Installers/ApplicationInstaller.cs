@@ -11,18 +11,19 @@ public class ApplicationInstaller : MonoInstaller
             .AsSingle()
             .NonLazy();
 
-        UIInstaller.Install(Container);
-
+        Container
+            .Bind<SoundController>()
+            .AsSingle();
+        
+        Container
+            .Bind<PlayerController>()
+            .AsSingle();
+        
         Container
             .Bind<GameController>()
             .AsSingle();
-    }
-}
-
-public class UIInstaller : Installer<UIInstaller>
-{
-    public override void InstallBindings()
-    {
+        
+        UIInstaller.Install(Container);
 
     }
 }
