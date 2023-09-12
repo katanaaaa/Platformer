@@ -1,18 +1,20 @@
-﻿using UI.UIService;
+﻿using Player;
+using Sounds;
+using UI.UIService;
 
 public class GameController
 {
-    private PlayerController _playerController;
-    private UIService _uiService;
     private SoundController _soundController;
+    private UIService _uiService;
+    private PlayerController _playerController;
 
     public GameController(
-        PlayerController playerController,
         SoundController soundController,
-        UIService uiService)
+        UIService uiService,
+        PlayerController playerController)
     {
-        _playerController = playerController;
         _uiService = uiService;
         _soundController = soundController;
+        _playerController = playerController;
     }
 }
