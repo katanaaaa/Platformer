@@ -8,34 +8,32 @@ public class UIInstaller : Installer<UIInstaller>
     public override void InstallBindings()
     {
         Container
-            .Bind<UIRoot>()
-            .FromComponentInNewPrefabResource("UIRoot")
+            .Bind<IUIRoot>()
+            .To<UIRoot>()
+            .FromComponentInNewPrefabResource(ResourcesConst.UIRoot)
             .AsSingle()
             .NonLazy();
         
         Container
-            .Bind<UIService>()
+            .Bind<IUIService>()
+            .To<UIService>()
             .AsSingle()
             .NonLazy();
         
         Container
             .Bind<UIMainMenuController>()
-            .AsSingle()
-            .NonLazy();
+            .AsSingle();
         
         Container
             .Bind<UIGameWindowController>()
-            .AsSingle()
-            .NonLazy();
+            .AsSingle();
 
         Container
             .Bind<UIEndGameWindowController>()
-            .AsSingle()
-            .NonLazy();
+            .AsSingle();
 
         Container
             .Bind<HUDWindowController>()
-            .AsSingle()
-            .NonLazy();
+            .AsSingle();
     }
 }

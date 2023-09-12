@@ -10,20 +10,11 @@ public class ApplicationInstaller : MonoInstaller
             .FromComponentInNewPrefabResource(ResourcesConst.MainCamera)
             .AsSingle()
             .NonLazy();
-
         
         SoundInstaller.Install(Container);
         UIInstaller.Install(Container);
-        
-        Container
-            .Bind<InputController>()
-            .AsSingle()
-            .NonLazy();
-        
+        InputInstaller.Install(Container);
         PlayerInstaller.Install(Container);
-        
-        Container
-            .Bind<GameController>()
-            .AsSingle();
+        MiscInstaller.Install(Container);
     }
 }

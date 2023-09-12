@@ -6,5 +6,6 @@ namespace UI.UIService
     {
         Transform Container { get; }
         Transform PoolContainer { get; }
+        Canvas RootCanvas { get; }
     }
 }

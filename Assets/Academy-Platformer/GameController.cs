@@ -17,4 +17,24 @@ public class GameController
         _soundController = soundController;
         _playerController = playerController;
     }
+
+    private void ScoreInit()
+    {
+        
+    }
+
+    public void InitGame()
+    {
+        
+    }
+
+    public void StartGame()
+    {
+        
+    }
+
+    public void StopGame()
+    {
+        
+    }
 }

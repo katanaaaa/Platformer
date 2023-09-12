@@ -7,7 +7,6 @@ namespace Player
     public class PlayerConfig : ScriptableObject
     {
         public PlayerModel PlayerModel => playerModel;
-        
         [SerializeField] private PlayerModel playerModel;
     }
 
@@ -15,7 +14,6 @@ namespace Player
     public struct PlayerModel
     {
         public Sprite Sprite;
-        
         public int Health;
         public int Speed;
     }

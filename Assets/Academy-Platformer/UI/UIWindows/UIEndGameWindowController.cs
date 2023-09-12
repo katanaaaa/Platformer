@@ -1,13 +1,15 @@
-﻿namespace UI.UIWindows
+﻿using UI.UIService;
+
+namespace UI.UIWindows
 {
     public class UIEndGameWindowController
     {
-        private readonly UIService.UIService _uiService;
+        private readonly IUIService _uiService;
 
         private UIEndGameWindow _endGameWindow;
         private GameController _gameController;
 
-        public UIEndGameWindowController(UIService.UIService uiService, GameController gameController)
+        public UIEndGameWindowController(IUIService uiService, GameController gameController)
         {
             _uiService = uiService;
             _gameController = gameController;

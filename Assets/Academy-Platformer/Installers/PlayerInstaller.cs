@@ -5,7 +5,6 @@ public class PlayerInstaller : Installer<PlayerInstaller>
 {
     public override void InstallBindings()
     {
-
         Container
             .Bind<PlayerConfig>()
             .FromScriptableObjectResource("PlayerConfig")

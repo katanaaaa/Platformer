@@ -6,5 +6,7 @@ namespace Sounds
     {
         public AudioSource AudioSource => audioSource;
         [SerializeField] private AudioSource audioSource;
+        
+        
     }
 }

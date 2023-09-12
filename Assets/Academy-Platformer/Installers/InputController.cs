@@ -12,8 +12,16 @@ public class InputController : ITickable
     public InputController(TickableManager tickableManager)
     {
         _tickableManager = tickableManager;
-        
+    }
+    
+    public void EnableTick()
+    {
         _tickableManager.Add(this);
+    }
+    
+    public void DisableTick()
+    {
+        _tickableManager.Remove(this);
     }
     
     public void Tick()

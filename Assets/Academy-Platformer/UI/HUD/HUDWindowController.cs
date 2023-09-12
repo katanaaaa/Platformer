@@ -1,11 +1,13 @@
-﻿namespace UI.HUD
+﻿using UI.UIService;
+
+namespace UI.HUD
 {
     public class HUDWindowController
     {
-        private readonly UIService.UIService _uiService;
+        private readonly IUIService _uiService;
         private HUDWindow _hudWindow;
 
-        public HUDWindowController(UIService.UIService uiService)
+        public HUDWindowController(IUIService uiService)
         {
             _uiService = uiService;
             _hudWindow = _uiService.Get<HUDWindow>();

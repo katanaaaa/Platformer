@@ -9,13 +9,13 @@ namespace UI.UIService
     {
         private Transform _deactivatedContainer;
 
-        private readonly UIRoot _uiRoot;
+        private readonly IUIRoot _uiRoot;
         private readonly Dictionary<Type, UIWindow> _viewStorage = new();
         private readonly Dictionary<Type, GameObject> _initWindows = new();
 
         private const string UISource = "";
 
-        public UIService(UIRoot uiRoot, Camera camera)
+        public UIService(IUIRoot uiRoot, Camera camera)
         {
             _uiRoot = uiRoot;
             _uiRoot.RootCanvas.worldCamera = camera;

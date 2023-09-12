@@ -2,7 +2,7 @@
 {
     public class SoundController
     {
-        private SoundPool _soundPool;
+        private readonly SoundPool _soundPool;
 
         public SoundController(SoundPool soundPool)
         {
@@ -17,7 +17,7 @@
             sound.AudioSource.Play();
         }
 
-        public void SwitchOff()
+        private void SwitchOff()
         {
             _soundPool.DisableCompletedSounds();
         }

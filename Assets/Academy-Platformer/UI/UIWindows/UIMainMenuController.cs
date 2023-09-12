@@ -1,13 +1,15 @@
-﻿namespace UI.UIWindows
+﻿using UI.UIService;
+
+namespace UI.UIWindows
 {
     public class UIMainMenuController
     {
-        private readonly UIService.UIService _uiService;
+        private readonly IUIService _uiService;
         
         private UIMainMenuWindow _mainMenuWindow;
         private GameController _gameController;
 
-        public UIMainMenuController(UIService.UIService uiService, GameController gameController)
+        public UIMainMenuController(IUIService uiService, GameController gameController)
         {
             _uiService = uiService;
             _gameController = gameController;
