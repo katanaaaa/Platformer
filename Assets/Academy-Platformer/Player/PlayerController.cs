@@ -1,52 +1,41 @@
-﻿using System;
-using Sounds;
-using Object = UnityEngine.Object;
+﻿using Sounds;
 
 namespace Player
 {
     public class PlayerController
     {
-        public Action OnDisposed;
-        
         private readonly SoundController _soundController;
         private readonly PlayerConfig _playerConfig;
         private PlayerView _playerView;
-        private PlayerView.PlayerFactory _playerFactory;
-        
-        private readonly int _currentHealth;
-        private readonly int _currentSpeed;
+        private PlayerMovement _playerMovement;
         private PlayerAnimator _playerAnimator;
-
-        private const float DelayDestroyPlayer = 2f;
+        private PlayerView.PlayerFactory _playerFactory;
+        private int _currentHealth;
+        private int _currentSpeed;
 
         public PlayerController(
             SoundController soundController,
             PlayerConfig playerConfig,
-            PlayerSpawner playerSpawner,
+            PlayerView.PlayerFactory playerFactory,
+            PlayerMovement playerMovement,
             PlayerAnimator playerAnimator)
         {
             _soundController = soundController;
             _playerConfig = playerConfig;
+            _playerFactory = playerFactory;
+            _playerMovement = playerMovement;
             _playerAnimator = playerAnimator;
-
-            _playerView = playerSpawner.Spawn();
-            _currentHealth = _playerConfig.PlayerModel.Health;
-            _currentSpeed = _playerConfig.PlayerModel.Speed;
-
-            _playerAnimator.Spawn();
         }
 
-        public void DestroyView(DG.Tweening.TweenCallback setEndWindow = null)
+        private void CreatePlayer()
         {
-            OnDisposed?.Invoke();
-
-            _soundController.Stop();
-            _soundController.Play(SoundName.GameOver);
-
-            // _playerAnimator.Death(setEndWindow);
+            _playerView = _playerFactory.Create();
             
-            Object.Destroy(_playerView.gameObject, DelayDestroyPlayer);
-            _playerView = null;
+            _playerMovement.SetParameters(_playerView);
+            _playerAnimator.SetParameters(_playerView);
+            
+            _currentHealth = _playerConfig.PlayerModel.Health;
+            _currentSpeed = _playerConfig.PlayerModel.Speed;
         }
     }
 }

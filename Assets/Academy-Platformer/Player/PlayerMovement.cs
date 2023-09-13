@@ -7,7 +7,7 @@ namespace Player
     public class PlayerMovement : IDisposable
     {
         private readonly InputController _inputController;
-        private readonly PlayerView _playerView;
+        private PlayerView _playerView;
 
         private const float Speed = 5f;
 
@@ -15,29 +15,30 @@ namespace Player
         private readonly Vector3 _rightPointStop;
         
         private readonly float _step;
+        private readonly DisposableManager _disposableManager;
 
         public PlayerMovement(
             InputController inputController,
-            PlayerView playerView,
             Camera camera,
             DisposableManager disposableManager)
         {
             _inputController = inputController;
-            _playerView = playerView;
+            _disposableManager = disposableManager;
 
             _step = Speed * Time.deltaTime;
             _leftPointStop = camera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f));
             _rightPointStop = camera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
             
-            disposableManager.Add(this);
         }
 
-        public void Init()
+        public void SetParameters(PlayerView playerView)
         {
+            _playerView = playerView;
             _inputController.OnLeftEvent += MoveLeft;
             _inputController.OnRightEvent += MoveRight;
+            _disposableManager.Add(this);
         }
-
+        
         public void Dispose()
         {
             _inputController.OnLeftEvent -= MoveLeft;

@@ -1,31 +1,20 @@
-﻿using Player;
-using Sounds;
-using UI.UIService;
+﻿using UI.UIService;
+using UI.UIWindows;
 
 public class GameController
 {
-    private SoundController _soundController;
-    private UIService _uiService;
-    private PlayerController _playerController;
+    private IUIService _uiService;
 
-    public GameController(
-        SoundController soundController,
-        UIService uiService,
-        PlayerController playerController)
+    public GameController(IUIService uiService)
     {
         _uiService = uiService;
-        _soundController = soundController;
-        _playerController = playerController;
+        
+        InitGame();
     }
 
-    private void ScoreInit()
+    private void InitGame()
     {
-        
-    }
-
-    public void InitGame()
-    {
-        
+        _uiService.Show<UIMainMenuWindow>();
     }
 
     public void StartGame()

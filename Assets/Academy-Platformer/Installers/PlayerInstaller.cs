@@ -15,20 +15,18 @@ public class PlayerInstaller : Installer<PlayerInstaller>
             .AsSingle();
 
         Container
-            .Bind<PlayerSpawner>()
-            .AsSingle();
-        
-        Container
             .BindFactory<PlayerView, PlayerView.PlayerFactory>()
             .FromComponentInNewPrefabResource(ResourcesConst.PlayerView);
-        
-        Container
-            .Bind<PlayerAnimator>()
-            .AsSingle();
 
         Container
             .Bind<PlayerMovement>()
-            .AsSingle();
+            .AsSingle()
+            .NonLazy();
+        
+        Container
+            .Bind<PlayerAnimator>()
+            .AsSingle()
+            .NonLazy();
 
         Container
             .Bind<PlayerController>()

@@ -5,14 +5,15 @@ namespace Player
 {
     public class PlayerAnimator
     {
-        private readonly PlayerView _playerView;
+        private PlayerView _playerView;
 
         private Sequence _sequenceSpawn;
         private Sequence _sequenceGetDamage;
         private Sequence _sequenceDeath;
 
-        private readonly Vector3 _startPositionPlayer;
-        private readonly Vector3 _endPositionPlayer;
+        private Vector3 _startPositionPlayer;
+        private Vector3 _endPositionPlayer;
+        private readonly Camera _camera;
 
         private const float FactorOffsetX = 10f;
         private const float FactorPixelHeight = 5f;
@@ -27,20 +28,25 @@ namespace Player
         private const float DecreasePlayerDeath = 0f;
         private const int NumberRepetitionsGetDamage = 5;
         
-        public PlayerAnimator(PlayerView playerView, Camera camera)
+        public PlayerAnimator(Camera camera)
+        {
+            _camera = camera;
+        }
+
+        public void SetParameters(PlayerView playerView)
         {
             _playerView = playerView;
-
-            if (camera != null)
+            
+            if (_camera == null)
             {
-                _startPositionPlayer = camera.ScreenToWorldPoint(new Vector3(
+                _startPositionPlayer = _camera.ScreenToWorldPoint(new Vector3(
                     -FactorOffsetX*playerView.SpriteRenderer.size.x, 
-                    camera.pixelHeight / FactorPixelHeight, 
-                    -camera.transform.position.z));
-                _endPositionPlayer =  camera.ScreenToWorldPoint(new Vector3(
-                    camera.pixelWidth / FactorPixelWidth, 
-                    camera.pixelHeight / FactorPixelHeight, 
-                    -camera.transform.position.z));
+                    _camera.pixelHeight / FactorPixelHeight, 
+                    -_camera.transform.position.z));
+                _endPositionPlayer =  _camera.ScreenToWorldPoint(new Vector3(
+                    _camera.pixelWidth / FactorPixelWidth, 
+                    _camera.pixelHeight / FactorPixelHeight, 
+                    -_camera.transform.position.z));
             }
             else
             {

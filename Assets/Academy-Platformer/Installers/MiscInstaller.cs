@@ -6,6 +6,7 @@ public class MiscInstaller : Installer<MiscInstaller>
     {
         Container
             .Bind<GameController>()
-            .AsSingle();
+            .AsSingle()
+            .NonLazy();
     }
 }
