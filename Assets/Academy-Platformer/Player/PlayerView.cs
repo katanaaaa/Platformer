@@ -9,7 +9,7 @@ namespace Player
         
         [SerializeField] private SpriteRenderer spriteRenderer;
 
-        public class PlayerFactory : PlaceholderFactory<PlayerView>
+        public class Factory : PlaceholderFactory<PlayerView>
         { }
     }
 }

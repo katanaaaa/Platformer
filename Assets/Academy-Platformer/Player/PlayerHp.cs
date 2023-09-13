@@ -16,11 +16,9 @@ namespace Player
         {
             _health = playerConfig.PlayerModel.Health;
             _soundController = soundController;
-
-            //FallObjectController.DamageToPlayerNotify += ReduceHealth;
         }
-
-        public void ReduceHealth(float damage)
+        
+        private void ReduceHealth(float damage)
         {
             _health -= damage;
 

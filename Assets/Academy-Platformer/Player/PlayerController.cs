@@ -9,14 +9,12 @@ namespace Player
         private PlayerView _playerView;
         private PlayerMovement _playerMovement;
         private PlayerAnimator _playerAnimator;
-        private PlayerView.PlayerFactory _playerFactory;
-        private int _currentHealth;
-        private int _currentSpeed;
+        private PlayerView.Factory _playerFactory;
 
         public PlayerController(
             SoundController soundController,
             PlayerConfig playerConfig,
-            PlayerView.PlayerFactory playerFactory,
+            PlayerView.Factory playerFactory,
             PlayerMovement playerMovement,
             PlayerAnimator playerAnimator)
         {
@@ -27,15 +25,12 @@ namespace Player
             _playerAnimator = playerAnimator;
         }
 
-        private void CreatePlayer()
+        private void Spawn()
         {
             _playerView = _playerFactory.Create();
             
             _playerMovement.SetParameters(_playerView);
             _playerAnimator.SetParameters(_playerView);
-            
-            _currentHealth = _playerConfig.PlayerModel.Health;
-            _currentSpeed = _playerConfig.PlayerModel.Speed;
         }
     }
 }
