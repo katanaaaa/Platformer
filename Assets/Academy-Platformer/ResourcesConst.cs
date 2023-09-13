@@ -5,4 +5,5 @@
     public const string SoundConfig = "SoundConfig";
     public const string SoundView = "SoundView";
     public const string PlayerConfig = "PlayerConfig";
+    public const string PlayerView = "Player";
 }

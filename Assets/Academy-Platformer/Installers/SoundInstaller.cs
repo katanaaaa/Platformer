@@ -6,8 +6,11 @@ public class SoundInstaller : Installer<SoundInstaller>
     public override void InstallBindings()
     {
         Container
-            .Bind<SoundPool>()
-            .AsSingle();
+            .BindMemoryPool<SoundView, SoundView.SoundPool>()
+            .WithInitialSize(5)
+            .FromComponentInNewPrefabResource(ResourcesConst.SoundView)
+            .UnderTransformGroup("SoundPool")
+            .NonLazy();
         
         Container
             .Bind<SoundController>()

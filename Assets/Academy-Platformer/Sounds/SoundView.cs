@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace Sounds
 {
@@ -6,7 +7,10 @@ namespace Sounds
     {
         public AudioSource AudioSource => audioSource;
         [SerializeField] private AudioSource audioSource;
-        
-        
+
+        public class SoundPool : MemoryPool<SoundView>
+        {
+            
+        }
     }
 }

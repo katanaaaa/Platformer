@@ -14,7 +14,7 @@ public class ApplicationInstaller : MonoInstaller
         SoundInstaller.Install(Container);
         UIInstaller.Install(Container);
         InputInstaller.Install(Container);
-        PlayerInstaller.Install(Container);
+        // PlayerInstaller.Install(Container);
         MiscInstaller.Install(Container);
     }
 }

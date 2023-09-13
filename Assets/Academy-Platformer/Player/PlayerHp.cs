@@ -1,22 +1,20 @@
 using System;
-using FallObject;
 using Sounds;
 
 namespace Player
 {
-    public class PlayerHpController
+    public class PlayerHp
     {
         public Action<float> OnHealthChanged;
-
         public Action OnZeroHealth;
 
         private SoundController _soundController;
 
         private float _health;
 
-        public PlayerHpController(float health, SoundController soundController)
+        public PlayerHp(PlayerConfig playerConfig, SoundController soundController)
         {
-            _health = health;
+            _health = playerConfig.PlayerModel.Health;
             _soundController = soundController;
 
             //FallObjectController.DamageToPlayerNotify += ReduceHealth;
@@ -27,8 +25,8 @@ namespace Player
             _health -= damage;
 
             _soundController.Play(SoundName.GetDamage);
+            
             OnHealthChanged?.Invoke(_health);
-
             if (_health <= 0)
             {
                 OnZeroHealth?.Invoke();

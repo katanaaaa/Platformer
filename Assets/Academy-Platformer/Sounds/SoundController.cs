@@ -4,9 +4,9 @@
     {
         private readonly SoundPool _soundPool;
 
-        public SoundController(SoundPool soundPool)
+        public SoundController()
         {
-            _soundPool = soundPool;
+            
         }
 
         public void Play(SoundName soundName, float volume = 1, bool loop = false)
