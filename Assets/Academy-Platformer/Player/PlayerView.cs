@@ -9,7 +9,6 @@ namespace Player
         public SpriteRenderer SpriteRenderer => spriteRenderer;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
-       
         
         public void Dispose()
         {

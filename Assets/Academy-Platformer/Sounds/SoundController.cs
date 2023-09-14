@@ -18,13 +18,8 @@ namespace Sounds
         {
             DisableCompletedSounds();
 
-            var sound = _soundPool.Spawn();
-            var source = sound.AudioSource;
-            
-            source.clip = _soundConfig.Get(soundName);
-            source.volume = volume;
-            source.loop = loop;
-            
+            var sound = _soundPool.Spawn(new SoundView.SoundProtocol(
+                soundName, volume, loop));
             sound.AudioSource.Play();
         }
         

@@ -18,7 +18,6 @@ public class PlayerInstaller : Installer<PlayerInstaller>
             .BindFactory<PlayerView, PlayerView.Factory>()
             .FromComponentInNewPrefabResource(ResourcesConst.PlayerView);
         
-
         Container
             .Bind<PlayerAnimator>()
             .AsSingle();
