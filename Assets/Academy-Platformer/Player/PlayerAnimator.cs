@@ -50,7 +50,7 @@ namespace Player
             }
             else
             {
-                Debug.LogError("Component cameraView is null");
+                Debug.LogError("Component Camera is null");
             }
         }
         

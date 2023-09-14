@@ -9,7 +9,7 @@ public class PlayerInstaller : Installer<PlayerInstaller>
             .Bind<PlayerConfig>()
             .FromScriptableObjectResource(ResourcesConst.PlayerConfig)
             .AsSingle();
-
+        
         Container
             .Bind<PlayerHp>()
             .AsSingle();
@@ -17,19 +17,19 @@ public class PlayerInstaller : Installer<PlayerInstaller>
         Container
             .BindFactory<PlayerView, PlayerView.Factory>()
             .FromComponentInNewPrefabResource(ResourcesConst.PlayerView);
+        
 
         Container
-            .Bind<PlayerMovement>()
+            .Bind<PlayerAnimator>()
+            .AsSingle();
+
+        Container
+            .Bind<PlayerController>()
             .AsSingle()
             .NonLazy();
         
         Container
-            .Bind<PlayerAnimator>()
-            .AsSingle()
-            .NonLazy();
-
-        Container
-            .Bind<PlayerController>()
+            .Bind<PlayerMovement>()
             .AsSingle()
             .NonLazy();
     }

@@ -1,12 +1,12 @@
-using System;
 using UnityEngine;
 using Zenject;
 
 namespace Player
 {
-    public class PlayerMovement : IDisposable
+    public class PlayerMovement
     {
         private readonly InputController _inputController;
+        private readonly TickableManager _tickableManager;
         private PlayerView _playerView;
 
         private const float Speed = 5f;
@@ -15,31 +15,31 @@ namespace Player
         private readonly Vector3 _rightPointStop;
         
         private readonly float _step;
-        private readonly DisposableManager _disposableManager;
+        private readonly PlayerController _playerController;
 
         public PlayerMovement(
             InputController inputController,
             Camera camera,
-            DisposableManager disposableManager)
+            TickableManager tickableManager,
+            PlayerController playerController)
         {
             _inputController = inputController;
-            _disposableManager = disposableManager;
+            _tickableManager = tickableManager;
+            _playerController = playerController;
 
             _step = Speed * Time.deltaTime;
             _leftPointStop = camera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f));
             _rightPointStop = camera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
-            
         }
 
-        public void SetParameters(PlayerView playerView)
+        public void StartMoving()
         {
-            _playerView = playerView;
+            _playerView = _playerController.GetPlayerView();
             _inputController.OnLeftEvent += MoveLeft;
             _inputController.OnRightEvent += MoveRight;
-            _disposableManager.Add(this);
         }
-        
-        public void Dispose()
+
+        public void StopMoving()
         {
             _inputController.OnLeftEvent -= MoveLeft;
             _inputController.OnRightEvent -= MoveRight;

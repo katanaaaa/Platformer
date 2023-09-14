@@ -10,14 +10,10 @@ public class SoundInstaller : Installer<SoundInstaller>
             .AsSingle();
         
         Container
-            .BindMemoryPool<SoundView, SoundView.SoundPool>()
+            .BindMemoryPool<SoundView, SoundView.Pool>()
             .WithInitialSize(5)
             .FromComponentInNewPrefabResource(ResourcesConst.SoundView)
             .UnderTransformGroup("SoundPool");
-
-        Container
-            .Bind<SoundPool>()
-            .AsSingle();
         
         Container
             .Bind<SoundController>()

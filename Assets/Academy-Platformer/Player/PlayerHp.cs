@@ -12,10 +12,12 @@ namespace Player
 
         private float _health;
 
-        public PlayerHp(PlayerConfig playerConfig, SoundController soundController)
+        public PlayerHp(
+            PlayerConfig playerConfig,
+            SoundController soundController)
         {
-            _health = playerConfig.PlayerModel.Health;
             _soundController = soundController;
+            _health = playerConfig.PlayerModel.Health;
         }
         
         private void ReduceHealth(float damage)

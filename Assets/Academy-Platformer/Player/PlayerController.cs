@@ -1,20 +1,32 @@
-﻿using Sounds;
+﻿using System;
+using Sounds;
+using UI.HUD;
+using Object = UnityEngine.Object;
 
 namespace Player
 {
     public class PlayerController
     {
+        public Action OnDisposed;
+
+        public PlayerHp PlayerHp => _playerHp;
+
+        private const float DelayDestroyPlayer = 2f;
+
         private readonly SoundController _soundController;
         private readonly PlayerConfig _playerConfig;
+        private readonly PlayerHp _playerHp;
         private PlayerView _playerView;
+        private PlayerView.Factory _playerFactory;
         private PlayerMovement _playerMovement;
         private PlayerAnimator _playerAnimator;
-        private PlayerView.Factory _playerFactory;
 
         public PlayerController(
             SoundController soundController,
+            HUDWindowController hudWindowController,
             PlayerConfig playerConfig,
             PlayerView.Factory playerFactory,
+            PlayerHp playerHp,
             PlayerMovement playerMovement,
             PlayerAnimator playerAnimator)
         {
@@ -23,14 +35,32 @@ namespace Player
             _playerFactory = playerFactory;
             _playerMovement = playerMovement;
             _playerAnimator = playerAnimator;
+            _playerHp = playerHp;
+
+            _playerHp.OnHealthChanged += hudWindowController.ChangeHealthPoint;
         }
 
-        private void Spawn()
+        public void Spawn()
         {
             _playerView = _playerFactory.Create();
+        }
+
+        public PlayerView GetPlayerView()
+        {
+            return _playerView;
+        }
+
+    public void DestroyView(DG.Tweening.TweenCallback setEndWindow = null)
+        {
+            OnDisposed?.Invoke();
+
+            _soundController.Stop();
+            _soundController.Play(SoundName.GameOver);
             
-            _playerMovement.SetParameters(_playerView);
-            _playerAnimator.SetParameters(_playerView);
+            _playerAnimator.Death(setEndWindow);
+            
+            Object.Destroy(_playerView.gameObject, DelayDestroyPlayer);
+            _playerView = null;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace UI.HUD
             return currentHP;
         }
 
-        private void ChangeScore(int score)
+        public void ChangeScore(int score)
         {
             _hudWindow.ChangeScoreText(score);
         }

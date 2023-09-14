@@ -15,6 +15,7 @@ public class ApplicationInstaller : MonoInstaller
         UIInstaller.Install(Container);
         InputInstaller.Install(Container);
         PlayerInstaller.Install(Container);
+        ScoreInstaller.Install(Container);
         MiscInstaller.Install(Container);
     }
 }
