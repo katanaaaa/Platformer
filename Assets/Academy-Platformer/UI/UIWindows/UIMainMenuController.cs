@@ -5,9 +5,8 @@ namespace UI.UIWindows
     public class UIMainMenuController
     {
         private readonly IUIService _uiService;
-        
-        private UIMainMenuWindow _mainMenuWindow;
-        private GameController _gameController;
+        private readonly UIMainMenuWindow _mainMenuWindow;
+        private readonly GameController _gameController;
 
         public UIMainMenuController(IUIService uiService, GameController gameController)
         {
@@ -22,13 +21,12 @@ namespace UI.UIWindows
         private void ShowWindow()
         {
             _mainMenuWindow.OnStartButtonClickEvent += ShowGameWindow;
-            // _mainMenuWindow.OnStartButtonClickEvent += _gameController.StartGame;
+            _mainMenuWindow.OnStartButtonClickEvent += _gameController.StartGame;
         }
         private void HideWindow()
         {
             _mainMenuWindow.OnStartButtonClickEvent -= ShowGameWindow;
-            // _mainMenuWindow.OnStartButtonClickEvent -= _gameController.StartGame;
-
+            _mainMenuWindow.OnStartButtonClickEvent -= _gameController.StartGame;
         }
         private void ShowGameWindow()
         {

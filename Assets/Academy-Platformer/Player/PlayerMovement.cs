@@ -1,12 +1,10 @@
 using UnityEngine;
-using Zenject;
 
 namespace Player
 {
     public class PlayerMovement
     {
         private readonly InputController _inputController;
-        private readonly TickableManager _tickableManager;
         private PlayerView _playerView;
 
         private const float Speed = 5f;
@@ -15,26 +13,22 @@ namespace Player
         private readonly Vector3 _rightPointStop;
         
         private readonly float _step;
-        private readonly PlayerController _playerController;
 
         public PlayerMovement(
             InputController inputController,
-            Camera camera,
-            TickableManager tickableManager,
-            PlayerController playerController)
+            Camera camera)
         {
             _inputController = inputController;
-            _tickableManager = tickableManager;
-            _playerController = playerController;
 
             _step = Speed * Time.deltaTime;
             _leftPointStop = camera.ScreenToWorldPoint(new Vector3(0f, 0f, 0f));
             _rightPointStop = camera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
         }
 
-        public void StartMoving()
+        public void StartMoving(PlayerView playerView)
         {
-            _playerView = _playerController.GetPlayerView();
+            _playerView = playerView;
+            
             _inputController.OnLeftEvent += MoveLeft;
             _inputController.OnRightEvent += MoveRight;
         }

@@ -9,13 +9,7 @@ namespace UI.HUD
         [SerializeField] private Text text;
         [SerializeField] private Transform healthBar;
 
-        public float CurrentHealth
-        {
-            get
-            {
-                return healthBar.localScale.x;
-            }
-        }
+        public float CurrentHealth => healthBar.localScale.x;
 
         public void ChangeHealthBar(float healthPoint)
         {

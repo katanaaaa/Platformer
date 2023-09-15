@@ -33,14 +33,14 @@ namespace Player
             _camera = camera;
         }
 
-        public void SetParameters(PlayerView playerView)
+        public void Start(PlayerView playerView)
         {
             _playerView = playerView;
             
             if (_camera == null)
             {
                 _startPositionPlayer = _camera.ScreenToWorldPoint(new Vector3(
-                    -FactorOffsetX*playerView.SpriteRenderer.size.x, 
+                    -FactorOffsetX * _playerView.SpriteRenderer.size.x, 
                     _camera.pixelHeight / FactorPixelHeight, 
                     -_camera.transform.position.z));
                 _endPositionPlayer =  _camera.ScreenToWorldPoint(new Vector3(

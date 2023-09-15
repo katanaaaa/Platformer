@@ -22,12 +22,12 @@ namespace UI.UIWindows
         private void ShowWindow()
         {
             _endGameWindow.OnReturnButtonClickEvent += ShowGameWindows;
-            // _endGameWindow.OnReturnButtonClickEvent += _gameController.StartGame;
+            _endGameWindow.OnReturnButtonClickEvent += _gameController.StartGame;
         }
         private void HideWindow()
         {
             _endGameWindow.OnReturnButtonClickEvent -= ShowGameWindows;
-            // _endGameWindow.OnReturnButtonClickEvent -= _gameController.StartGame;
+            _endGameWindow.OnReturnButtonClickEvent -= _gameController.StartGame;
         }
 
         private void ShowGameWindows()

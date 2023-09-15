@@ -9,10 +9,5 @@ namespace UI.UIWindows
             base.Show();
             UIService.Show<HUDWindow>();
         }
-
-        public override void Hide()
-        {
-            base.Hide();
-        }
     }
 }

@@ -43,22 +43,20 @@ namespace Player
         public void Spawn()
         {
             _playerView = _playerFactory.Create();
+            _playerMovement.StartMoving(_playerView);
+            _playerAnimator.Start(_playerView);
         }
 
-        public PlayerView GetPlayerView()
-        {
-            return _playerView;
-        }
-
-    public void DestroyView(DG.Tweening.TweenCallback setEndWindow = null)
+        public void DestroyView(DG.Tweening.TweenCallback setEndWindow = null)
         {
             OnDisposed?.Invoke();
 
             _soundController.Stop();
             _soundController.Play(SoundName.GameOver);
-            
+
+            _playerMovement.StopMoving();
             _playerAnimator.Death(setEndWindow);
-            
+
             Object.Destroy(_playerView.gameObject, DelayDestroyPlayer);
             _playerView = null;
         }

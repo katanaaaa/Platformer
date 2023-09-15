@@ -9,10 +9,17 @@ public class ScoreCounter
 
     private SoundController _soundController;
 
-    private int _score = 0;
+    private int _score;
 
     public ScoreCounter(SoundController soundController)
     {
         _soundController = soundController;
+    }
+
+    public void PlayerCatchFallObjectEventHandler(FallObjectController fallObjectController)
+    {
+        _soundController.Play(SoundName.Buff1);
+        _score += fallObjectController.PointsPerObject;
+        ScoreChangeNotify?.Invoke(_score);
     }
 }

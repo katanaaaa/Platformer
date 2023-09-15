@@ -19,6 +19,10 @@ public class PlayerInstaller : Installer<PlayerInstaller>
             .FromComponentInNewPrefabResource(ResourcesConst.PlayerView);
         
         Container
+            .Bind<PlayerMovement>()
+            .AsSingle();
+        
+        Container
             .Bind<PlayerAnimator>()
             .AsSingle();
 
@@ -27,9 +31,5 @@ public class PlayerInstaller : Installer<PlayerInstaller>
             .AsSingle()
             .NonLazy();
         
-        Container
-            .Bind<PlayerMovement>()
-            .AsSingle()
-            .NonLazy();
     }
 }
