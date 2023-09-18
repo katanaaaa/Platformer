@@ -24,6 +24,8 @@ public class ApplicationInstaller : MonoInstaller
             .Bind<ScoreCounter>()
             .AsSingle();
         
+        FallObjectInstaller.Install(Container);
+        
         Container
             .BindInterfacesAndSelfTo<GameController>()
             .AsSingle()

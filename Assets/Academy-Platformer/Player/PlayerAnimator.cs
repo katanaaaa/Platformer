@@ -27,7 +27,7 @@ namespace Player
         private const float IncreasePlayerDeath = 0.7f;
         private const float DecreasePlayerDeath = 0f;
         private const int NumberRepetitionsGetDamage = 5;
-        
+
         public PlayerAnimator(Camera camera)
         {
             _camera = camera;
@@ -36,44 +36,37 @@ namespace Player
         public void Start(PlayerView playerView)
         {
             _playerView = playerView;
-            
-            if (_camera == null)
-            {
-                _startPositionPlayer = _camera.ScreenToWorldPoint(new Vector3(
-                    -FactorOffsetX * _playerView.SpriteRenderer.size.x, 
-                    _camera.pixelHeight / FactorPixelHeight, 
-                    -_camera.transform.position.z));
-                _endPositionPlayer =  _camera.ScreenToWorldPoint(new Vector3(
-                    _camera.pixelWidth / FactorPixelWidth, 
-                    _camera.pixelHeight / FactorPixelHeight, 
-                    -_camera.transform.position.z));
-            }
-            else
-            {
-                Debug.LogError("Component Camera is null");
-            }
+
+            _startPositionPlayer = _camera.ScreenToWorldPoint(new Vector3(
+                -FactorOffsetX * _playerView.SpriteRenderer.size.x,
+                _camera.pixelHeight / FactorPixelHeight,
+                -_camera.transform.position.z));
+            _endPositionPlayer = _camera.ScreenToWorldPoint(new Vector3(
+                _camera.pixelWidth / FactorPixelWidth,
+                _camera.pixelHeight / FactorPixelHeight,
+                -_camera.transform.position.z));
         }
-        
+
         public void Spawn()
         {
             _playerView.transform.position = _startPositionPlayer;
 
             _sequenceSpawn?.Kill();
-            
+
             _sequenceSpawn = DOTween.Sequence();
-            
+
             _sequenceSpawn.Append(_playerView.transform
                 .DOMove(_endPositionPlayer, DurationSpawn)
                 .SetEase(Ease.OutBack)
                 .SetDelay(DelaySpawn));
         }
-        
+
         public void GetDamage()
         {
             _sequenceGetDamage?.Kill();
-            
+
             _sequenceGetDamage = DOTween.Sequence();
-            
+
             _sequenceGetDamage
                 .Append(_playerView.SpriteRenderer.DOFade(VisibilityAlphaGetDamage, DurationGetDamage))
                 .Append(_playerView.SpriteRenderer.DOFade(InvisibilityAlphaGetDamage, DurationGetDamage))
@@ -83,7 +76,7 @@ namespace Player
         public void Death(TweenCallback setEndWindow = null)
         {
             _sequenceDeath?.Kill();
-                
+
             _sequenceDeath = DOTween.Sequence();
 
             _sequenceDeath

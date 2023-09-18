@@ -7,5 +7,10 @@ namespace FallObject
         
         private int _pointsPerObject;
         private int _damage;
+
+        public FallObjectController(FallObjectView fallObjectView, FallObjectModel fallObjectModel)
+        {
+
+        }
     }
 }
